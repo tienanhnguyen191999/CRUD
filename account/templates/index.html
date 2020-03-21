@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    <form id="createForm" method="POST" >
+        {% csrf_token %}
+        <legend>Create User</legend>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="text" class="form-control"  name="username" id="username" aria-describedby="emailHelp" placeholder="Username..." required>
+        </div>
+         <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp" name="email" id="email" placeholder="Email..." required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" name="password" id="password"  placeholder="Password..." required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <div id="alert"></div>
+    <br>
+    
+    <table class="table"  id="main-table">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in  users%}
+            <tr >
+                <th scope="row">{{user.pk}}</th>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.password}}</td>
+                <td><button class="btn btn-primary update-btn" ><input type="hidden" value="{{user.pk}}">Update</button></td>
+                <td><button class="btn btn-danger delete-btn" ><input type="hidden" value="{{user.pk}}">Delete</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% include 'modal_update.html' %}
+{% endblock content %}
