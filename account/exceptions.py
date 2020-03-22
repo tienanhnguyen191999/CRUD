@@ -5,13 +5,5 @@ class BaseException(Exception):
         self.data = data
 
 
-class UsernameLengthException(BaseException):
-    pass
-
-
-class EmailInvalidException(BaseException):
-    pass
-
-
-class PasswordLenthException(BaseException):
+class PermissionDeny(BaseException):
     pass

@@ -6,4 +6,5 @@ urlpatterns = [
     path('getUser', views.getUserById, name="account-getuser"),
     path('updateUser', views.updateUser, name="account-updateuser"),
     path('delUser', views.delUser, name="account-delUser"),
+    path('myadmin', views.admin, name="account-admin"),
 ]

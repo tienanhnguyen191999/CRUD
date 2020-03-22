@@ -3,6 +3,7 @@ from . import services
 from django.http import JsonResponse, HttpResponse
 from django.core import serializers
 from .models import User
+from .exceptions import PermissionDeny
 import json
 
 # Create your views here.
@@ -70,3 +71,7 @@ def delUser(req):
         id = req.POST.get('id')
         error = services.delUserById(id)
         return JsonResponse({"error": error})
+
+
+def admin(req):
+    raise PermissionDeny()
